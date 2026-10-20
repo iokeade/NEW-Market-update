@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en-NG">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#147d4a">
+  <title>Vendor Sign In | MarketLink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", sans-serif;
+      background: #f5f8f5;
+      color: #18251d;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .brand-panel {
+      background: #147d4a;
+      color: white;
+      padding: 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .logo { font: 800 30px Manrope, sans-serif; }
+    .brand-panel h1 {
+      font: 800 clamp(32px, 4vw, 52px)/1.15 Manrope, sans-serif;
+      max-width: 520px;
+    }
+    .brand-panel p { line-height: 1.8; color: #e0f3e7; max-width: 430px; }
+    .panel-footer { font-size: 13px; color: #e0f3e7; }
+    .form-panel {
+      padding: 36px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .auth-card { width: 100%; max-width: 430px; }
+    .back-link { color: #147d4a; text-decoration: none; font-weight: 600; }
+    h2 { font: 800 30px Manrope, sans-serif; margin: 36px 0 8px; }
+    .subheading { color: #68756c; margin: 0 0 24px; line-height: 1.6; }
+    .tabs { display: grid; grid-template-columns: 1fr 1fr; background: #e9efe9; padding: 5px; border-radius: 12px; gap: 5px; }
+    .tabs button {
+      border: 0; border-radius: 9px; padding: 12px 8px;
+      background: transparent; cursor: pointer; font: 600 14px "DM Sans";
+      color: #536056;
+    }
+    .tabs button.active { background: white; color: #147d4a; box-shadow: 0 1px 4px #00000012; }
+    label { display: block; font-size: 14px; font-weight: 600; margin: 18px 0 8px; }
+    input {
+      width: 100%; padding: 13px 14px; border: 1px solid #d8e1d9;
+      border-radius: 10px; font: 15px "DM Sans"; background: white;
+    }
+    input:focus { outline: 2px solid #b4dfc4; border-color: #147d4a; }
+    .primary {
+      width: 100%; border: 0; border-radius: 10px; padding: 14px;
+      margin-top: 24px; color: white; background: #147d4a;
+      font: 700 15px "DM Sans"; cursor: pointer;
+    }
+    .primary:disabled { opacity: .65; cursor: wait; }
+    .message { font-size: 14px; line-height: 1.6; margin-top: 16px; }
+    .message.error { color: #b42318; }
+    .message.success { color: #147d4a; }
+    .bottom-note { text-align: center; font-size: 12px; color: #748076; margin-top: 24px; }
+    @media (max-width: 760px) {
+      body { grid-template-columns: 1fr; }
+      .brand-panel { padding: 25px 24px; min-height: 190px; }
+      .brand-panel h1 { font-size: 29px; margin: 24px 0 8px; }
+      .brand-panel p { margin-bottom: 0; }
+      .panel-footer { display: none; }
+      .form-panel { padding: 32px 22px; align-items: flex-start; }
+      h2 { margin-top: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="brand-panel">
+    <div class="logo">MarketLink<span style="color:#b7edc9">.</span></div>
+    <div>
+      <h1>Your market.<br>Your people.<br>One link.</h1>
+      <p>Reach more customers and manage your business from one simple marketplace.</p>
+    </div>
+    <div class="panel-footer">© MarketLink — Connecting Nigerian businesses.</div>
+  </aside>
+
+  <main class="form-panel">
+    <section class="auth-card">
+      <a class="back-link" href="index.html">← Back to marketplace</a>
+      <h2 id="form-title">Welcome back</h2>
+      <p class="subheading" id="form-subtitle">Sign in to manage your vendor account.</p>
+
+      <div class="tabs" role="tablist" aria-label="Vendor account">
+        <button type="button" id="login-tab" class="active" role="tab" aria-selected="true">Sign In</button>
+        <button type="button" id="register-tab" role="tab" aria-selected="false">Create Account</button>
+      </div>
+
+      <form id="auth-form">
+        <div id="business-field" hidden>
+          <label for="businessName">Business name</label>
+          <input id="businessName" name="businessName" autocomplete="organization" maxlength="120">
+        </div>
+
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="72" placeholder="At least 8 characters">
+
+        <button class="primary" id="submit-button" type="submit">Sign In</button>
+        <div id="form-message" class="message" role="status" aria-live="polite"></div>
+      </form>
+
+      <p class="bottom-note">Keep your password private. MarketLink will never ask you to share it.</p>
+    </section>
+  </main>
+
+  <script src="auth.js" defer></script>
+</body>
+</html>

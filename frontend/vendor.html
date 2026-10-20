@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en-NG">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#147d4a">
+  <meta name="description" content="Manage your MarketLink products.">
+  <title>Vendor Dashboard | MarketLink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #147d4a;
+      --green-dark: #0d6037;
+      --green-light: #eaf6ef;
+      --text: #18251d;
+      --muted: #68756d;
+      --border: #e1e8e3;
+      --surface: #ffffff;
+      --background: #f5f8f6;
+      --danger: #b42318;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 1180px;
+      min-height: 76px;
+      padding: 16px 24px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: "Manrope", sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--green);
+    }
+
+    .brand span { color: var(--text); }
+
+    .back-link {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 36px auto 64px;
+    }
+
+    .intro { margin-bottom: 28px; }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+    h1, h2 {
+      font-family: "Manrope", sans-serif;
+      letter-spacing: -0.7px;
+    }
+
+    h1 {
+      margin: 8px 0;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.2;
+    }
+
+    .intro p, .section-description {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      align-items: start;
+      gap: 24px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 8px 28px rgba(24, 37, 29, 0.035);
+      min-width: 0;
+    }
+
+    h2 {
+      margin: 0 0 6px;
+      font-size: 21px;
+    }
+
+    .section-description {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input, select, textarea {
+      display: block;
+      width: 100%;
+      min-height: 46px;
+      padding: 11px 12px;
+      border: 1px solid #d5dfd8;
+      border-radius: 9px;
+      background: white;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(20, 125, 74, 0.12);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .primary-button {
+      width: 100%;
+      min-height: 48px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .primary-button:hover { background: var(--green-dark); }
+    .primary-button:active { transform: translateY(1px); }
+    .primary-button:disabled { opacity: 0.65; cursor: wait; }
+
+    .notice {
+      display: none;
+      margin: 0 0 18px;
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .notice.success {
+      display: block;
+      color: #17643a;
+      background: #eaf6ef;
+      border: 1px solid #c9e9d4;
+    }
+
+    .notice.error {
+      display: block;
+      color: var(--danger);
+      background: #fff0ef;
+      border: 1px solid #f4c7c3;
+    }
+
+    .product-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .product-item {
+      padding: 15px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .product-item h3 {
+      margin: 0 0 4px;
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .product-meta {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .product-price {
+      color: var(--green);
+      font-weight: 800;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .empty-state {
+      border: 1px dashed #cbd8ce;
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .list-footer {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 0 20px 28px;
+    }
+
+    @media (max-width: 820px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .topbar-inner { padding: 14px 18px; }
+      .brand { font-size: 21px; }
+      .container {
+        width: calc(100% - 28px);
+        margin-top: 26px;
+      }
+      .panel { padding: 19px; }
+      .form-grid { grid-template-columns: 1fr; gap: 15px; }
+      .field.full { grid-column: auto; }
+      .back-link { font-size: 12px; }
+    }
+  </style>
+  <script src="vendor.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="MarketLink home">Market<span>Link</span></a>
+      <a class="back-link" href="index.html">← Back to marketplace</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <div class="eyebrow">Vendor workspace</div>
+      <h1>Manage your products</h1>
+      <p>Add products to your store and see what is saved in the MarketLink database.</p>
+    </section>
+
+    <div class="dashboard-grid">
+      <section class="panel" aria-labelledby="form-title">
+        <h2 id="form-title">Add a new product</h2>
+        <p class="section-description">Fields marked * are required.</p>
+
+        <div id="form-notice" class="notice" role="status" aria-live="polite"></div>
+
+        <form id="product-form">
+          <div class="form-grid">
+            <div class="field full">
+              <label for="name">Product name *</label>
+              <input id="name" name="name" type="text" maxlength="120" placeholder="e.g. Fresh tomatoes" required>
+            </div>
+
+            <div class="field">
+              <label for="category">Category *</label>
+              <select id="category" name="category" required>
+                <option value="">Choose a category</option>
+                <option value="Food">Food</option>
+                <option value="Grains">Grains</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Fruits">Fruits</option>
+                <option value="Meat & Seafood">Meat &amp; Seafood</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Household">Household</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="price">Price in naira (₦) *</label>
+              <input id="price" name="price" type="number" min="0" step="0.01" placeholder="4500" required>
+            </div>
+
+            <div class="field">
+              <label for="unit">Sold per</label>
+              <select id="unit" name="unit">
+                <option value="piece">Piece</option>
+                <option value="bag">Bag</option>
+                <option value="kg">Kilogram (kg)</option>
+                <option value="gram">Gram</option>
+                <option value="litre">Litre</option>
+                <option value="bottle">Bottle</option>
+                <option value="pack">Pack</option>
+                <option value="carton">Carton</option>
+                <option value="dozen">Dozen</option>
+                <option value="crate">Crate</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="stock">Available stock *</label>
+              <input id="stock" name="stock" type="number" min="0" step="1" value="1" required>
+            </div>
+
+            <div class="field full">
+              <label for="location">Product location *</label>
+              <input id="location" name="location" type="text" maxlength="100" placeholder="e.g. Ikeja, Lagos" value="Lagos" required>
+            </div>
+
+            <div class="field full">
+              <label for="image_url">Product image URL (optional)</label>
+              <input id="image_url" name="image_url" type="url" placeholder="https://example.com/product.jpg">
+              <p class="hint">Use a public image URL. We can add image uploads later.</p>
+            </div>
+
+            <div class="field full">
+              <label for="description">Description (optional)</label>
+              <textarea id="description" name="description" maxlength="1000" placeholder="Describe the product, quality, size, or source."></textarea>
+            </div>
+
+            <div class="field full">
+              <button class="primary-button" id="submit-button" type="submit">Save product</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="products-title">
+        <h2 id="products-title">Recently added products</h2>
+        <p class="section-description">Products currently stored in your database.</p>
+
+        <div id="list-notice" class="notice" role="status" aria-live="polite"></div>
+        <div id="product-list" class="product-list">
+          <div class="empty-state">Loading products…</div>
+        </div>
+
+        <div class="list-footer">
+          <span id="product-total">Loading product count…</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>MarketLink · Your Market. Your People. One Link.</footer>
+</body>
+</html>

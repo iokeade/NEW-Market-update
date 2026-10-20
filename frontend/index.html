@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en-NG">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#147d4a">
+  <meta name="description" content="Discover products from Nigerian vendors with MarketLink. Your Market. Your People. One Link.">
+  <title>MarketLink — Your Market. Your People. One Link.</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div class="announcement">
+    Discover more. Shop local. Support Nigerian businesses.
+  </div>
+  
+    <div style="position:fixed;right:20px;bottom:20px;z-index:9999;">
+      <a href="auth.html"
+        style="display:inline-block;background:#147d4a;color:white;
+        padding:14px 22px;border-radius:10px;text-decoration:none;
+        font-weight:bold;font-family:Arial,sans-serif;
+        box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+        Vendor Login →
+    </a>
+    </div>
+
+
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="#" aria-label="MarketLink home">
+        <span class="logo-icon">M</span>
+        <span>Market<span class="logo-light">Link</span></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Marketplace</a>
+        <a href="#about">About us</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button mobile-search-button" id="mobile-search-button" aria-label="Focus product search">⌕</button>
+        <button class="cart-button" id="cart-button" aria-label="View shopping cart">
+          <span aria-hidden="true">🛒</span>
+          <span class="cart-label">Cart</span>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="menu-button" id="menu-button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="#home">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="#products">Marketplace</a>
+      <a href="#about">About us</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-content">
+        <span class="eyebrow"><span class="status-dot"></span> YOUR MARKETPLACE, REIMAGINED</span>
+
+        <h1>Your market.<br>Your people.<br><span>One link.</span></h1>
+
+        <p class="hero-description">
+          Discover amazing products, connect with trusted local vendors,
+          and enjoy a simpler way to shop. Everything you need, all in one place.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#products">Explore marketplace <span>→</span></a>
+          <a class="button button-secondary" href="#categories">Browse categories</a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-icon">✓</div>
+          <p><strong>Built for Nigeria</strong><br><span>Supporting local businesses, one order at a time.</span></p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-glow"></div>
+        <div class="hero-image-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1100&q=85"
+            alt="Fresh produce at a local market"
+          >
+          <div class="floating-card floating-top">
+            <span class="floating-icon">🥬</span>
+            <div><strong>Fresh finds</strong><small>Discover local products</small></div>
+          </div>
+          <div class="floating-card floating-bottom">
+            <span class="floating-icon">🇳🇬</span>
+            <div><strong>Made for our market</strong><small>Powered by local businesses</small></div>
+          </div>
+        </div>
+        <div class="hero-decoration"></div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="container benefits-grid">
+        <article class="benefit">
+          <span class="benefit-icon">🛍️</span>
+          <div><h3>Easy shopping</h3><p>Discover products in one place.</p></div>
+        </article>
+        <article class="benefit">
+          <span class="benefit-icon">🏪</span>
+          <div><h3>Local vendors</h3><p>Help Nigerian businesses grow.</p></div>
+        </article>
+        <article class="benefit">
+          <span class="benefit-icon">📍</span>
+          <div><h3>Closer to you</h3><p>Location-based discovery is on our roadmap.</p></div>
+        </article>
+        <article class="benefit">
+          <span class="benefit-icon">🤝</span>
+          <div><h3>One community</h3><p>Customers and vendors connected.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="categories">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">FIND YOUR FAVOURITES</span>
+          <h2>Explore categories</h2>
+          <p>Whatever you need, your next great find starts here.</p>
+        </div>
+        <a href="#products" class="text-link">View products <span>→</span></a>
+      </div>
+
+      <div class="category-grid">
+        <button class="category-card category-green" data-category="Groceries">
+          <span class="category-emoji">🥑</span><strong>Groceries</strong><small>Fresh everyday essentials</small>
+        </button>
+        <button class="category-card category-orange" data-category="Electronics">
+          <span class="category-emoji">📱</span><strong>Electronics</strong><small>Tech for everyday life</small>
+        </button>
+        <button class="category-card category-purple" data-category="Fashion">
+          <span class="category-emoji">👕</span><strong>Fashion</strong><small>Express your style</small>
+        </button>
+        <button class="category-card category-blue" data-category="Home">
+          <span class="category-emoji">🛋️</span><strong>Home & Living</strong><small>Make yourself at home</small>
+        </button>
+        <button class="category-card category-pink" data-category="Beauty">
+          <span class="category-emoji">✨</span><strong>Beauty</strong><small>Your everyday essentials</small>
+        </button>
+        <button class="category-card category-yellow" data-category="">
+          <span class="category-emoji">🎁</span><strong>Explore all</strong><small>Find something unexpected</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="container section">
+        <div class="section-heading product-heading">
+          <div>
+            <span class="eyebrow">THE MARKETPLACE</span>
+            <h2>Discover great finds</h2>
+            <p>Explore products selected for your everyday needs.</p>
+          </div>
+          <span class="product-count" id="product-count">Loading products…</span>
+        </div>
+
+        <div class="product-toolbar">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="product-search" type="search" placeholder="Search products, categories..." aria-label="Search products">
+            <kbd>Search</kbd>
+          </label>
+
+          <select id="category-filter" aria-label="Filter by category">
+            <option value="">All categories</option>
+          </select>
+
+          <select id="sort-filter" aria-label="Sort products">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: low to high</option>
+            <option value="price-high">Price: high to low</option>
+            <option value="name">Name: A to Z</option>
+          </select>
+        </div>
+
+        <div id="product-message" class="product-message" role="status" aria-live="polite">Preparing your marketplace…</div>
+        <div class="product-grid" id="product-grid"></div>
+      </div>
+    </section>
+
+    <section class="vendor-banner container">
+      <div class="vendor-banner-content">
+        <span class="eyebrow eyebrow-light">GROW WITH MARKETLINK</span>
+        <h2>Your business deserves<br>a bigger market.</h2>
+        <p>We're building a marketplace that helps local vendors reach more customers and grow their businesses.</p>
+        <a href="#about" class="button button-white">Discover our vision <span>→</span></a>
+      </div>
+      <div class="vendor-banner-art" aria-hidden="true">
+        <span>📦</span><span>🌱</span><span>🛍️</span>
+      </div>
+    </section>
+
+    <section class="section container about-section" id="about">
+      <span class="eyebrow">MORE THAN A MARKETPLACE</span>
+      <h2>Connecting today's market<br>to tomorrow's possibilities.</h2>
+      <p>MarketLink starts by connecting customers and vendors across Nigeria. Our roadmap includes delivery maps, business forecasting, and AI-powered voice insights to make commerce smarter and more accessible.</p>
+      <div class="roadmap-pills">
+        <span>Marketplace</span><span>Supabase & Maps</span><span>AI Forecasting</span><span>AI Voice Analytics</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="logo footer-logo" href="#"><span class="logo-icon">M</span><span>Market<span class="logo-light">Link</span></span></a>
+      <p>Your Market. Your People. One Link.</p>
+      <span>© <span id="current-year"></span> MarketLink</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog class="cart-dialog" id="cart-dialog">
+    <div class="cart-dialog-header">
+      <div><span class="eyebrow">YOUR BAG</span><h2>Your shopping cart</h2></div>
+      <button class="close-button" id="close-cart" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-summary">
+      <div><span>Subtotal</span><strong id="cart-subtotal">₦0</strong></div>
+      <p>Delivery fees will be calculated when checkout is implemented.</p>
+      <button class="button button-primary checkout-button" id="checkout-button">Continue to checkout</button>
+    </div>
+  </dialog>
+
+</body>
+</html>
