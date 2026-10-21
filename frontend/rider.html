@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketLink | Rider Dashboard</title>
+  <link rel="stylesheet" href="rider.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">MarketLink<span>.</span></a>
+    <div class="account">
+      <span id="rider-name">Rider account</span>
+      <button id="logout-btn" class="logout-btn" type="button">Log out</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <p class="eyebrow">RIDER PORTAL</p>
+      <h1>Delivery dashboard</h1>
+      <p>Welcome back, <strong id="welcome-name">Rider</strong>.</p>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card">
+        <span>Available deliveries</span>
+        <strong id="available-count">—</strong>
+      </article>
+      <article class="stat-card">
+        <span>My deliveries</span>
+        <strong id="assigned-count">—</strong>
+      </article>
+      <article class="stat-card">
+        <span>Account status</span>
+        <strong id="account-status">Active</strong>
+      </article>
+    </section>
+
+    <div id="notice" class="notice" role="status" aria-live="polite">
+      Loading your rider profile...
+    </div>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Available deliveries</h2>
+          <p>Delivery jobs will appear here when assignment is enabled.</p>
+        </div>
+        <button id="refresh-btn" class="secondary-btn" type="button">Refresh</button>
+      </div>
+      <div id="available-list" class="delivery-list">
+        <p class="empty">Loading deliveries...</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <h2>My deliveries</h2>
+          <p>Track the deliveries assigned to you.</p>
+        </div>
+      </div>
+      <div id="assigned-list" class="delivery-list">
+        <p class="empty">Loading deliveries...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="rider.js"></script>
+</body>
+</html>

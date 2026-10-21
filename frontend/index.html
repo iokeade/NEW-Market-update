@@ -1,240 +1,196 @@
 
 <!DOCTYPE html>
-<html lang="en-NG">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#147d4a">
-  <meta name="description" content="Discover products from Nigerian vendors with MarketLink. Your Market. Your People. One Link.">
-  <title>MarketLink — Your Market. Your People. One Link.</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <title>MarketLink | Connect, Shop, Deliver</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #183b2b;
+      background: #f5f8f5;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 7%;
+      background: white;
+      border-bottom: 1px solid #e5ebe6;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      color: #174b32;
+      text-decoration: none;
+    }
+
+    .logo span { color: #35a66a; }
+
+    .header-label {
+      color: #607166;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 65px 22px 75px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .eyebrow {
+      color: #268454;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.12;
+      margin: 15px 0;
+    }
+
+    .intro p {
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+      color: #637268;
+      font-size: 17px;
+    }
+
+    .question {
+      text-align: center;
+      margin: 34px 0 24px;
+      font-size: 21px;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .choice {
+      background: white;
+      border: 1px solid #e1e9e2;
+      border-radius: 18px;
+      padding: 28px 23px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .choice:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px #173d2b12;
+    }
+
+    .choice-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 15px;
+      font-size: 29px;
+      margin-bottom: 20px;
+    }
+
+    .rider .choice-icon { background: #e4f4e9; }
+    .vendor .choice-icon { background: #fff0dc; }
+    .buyer .choice-icon { background: #e8edff; }
+
+    .choice h2 {
+      font-size: 21px;
+      margin: 0 0 10px;
+    }
+
+    .choice p {
+      color: #637268;
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 48px;
+    }
+
+    .link-label {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #267748;
+    }
+
+    footer {
+      padding: 23px;
+      text-align: center;
+      border-top: 1px solid #e5ebe6;
+      color: #718077;
+      font-size: 13px;
+      background: white;
+    }
+
+    @media (max-width: 760px) {
+      main { padding-top: 42px; }
+      .choices { grid-template-columns: 1fr; }
+      .choice p { min-height: 0; }
+      header { padding: 18px 5%; }
+    }
+  </style>
 </head>
 <body>
-
-  <div class="announcement">
-    Discover more. Shop local. Support Nigerian businesses.
-  </div>
-  
-    <div style="position:fixed;right:20px;bottom:20px;z-index:9999;">
-      <a href="auth.html"
-        style="display:inline-block;background:#147d4a;color:white;
-        padding:14px 22px;border-radius:10px;text-decoration:none;
-        font-weight:bold;font-family:Arial,sans-serif;
-        box-shadow:0 4px 12px rgba(0,0,0,0.2);">
-        Vendor Login →
-    </a>
-    </div>
-
-
-  <header class="header">
-    <div class="container nav">
-      <a class="logo" href="#" aria-label="MarketLink home">
-        <span class="logo-icon">M</span>
-        <span>Market<span class="logo-light">Link</span></span>
-      </a>
-
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="#home">Home</a>
-        <a href="#categories">Categories</a>
-        <a href="#products">Marketplace</a>
-        <a href="#about">About us</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="icon-button mobile-search-button" id="mobile-search-button" aria-label="Focus product search">⌕</button>
-        <button class="cart-button" id="cart-button" aria-label="View shopping cart">
-          <span aria-hidden="true">🛒</span>
-          <span class="cart-label">Cart</span>
-          <span class="cart-count" id="cart-count">0</span>
-        </button>
-        <button class="menu-button" id="menu-button" aria-label="Open navigation" aria-expanded="false">☰</button>
-      </div>
-    </div>
-
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
-      <a href="#home">Home</a>
-      <a href="#categories">Categories</a>
-      <a href="#products">Marketplace</a>
-      <a href="#about">About us</a>
-    </nav>
+  <header>
+    <a class="logo" href="index.html">MarketLink<span>.</span></a>
+    <span class="header-label">Your marketplace, connected.</span>
   </header>
 
   <main>
-    <section class="hero container" id="home">
-      <div class="hero-content">
-        <span class="eyebrow"><span class="status-dot"></span> YOUR MARKETPLACE, REIMAGINED</span>
-
-        <h1>Your market.<br>Your people.<br><span>One link.</span></h1>
-
-        <p class="hero-description">
-          Discover amazing products, connect with trusted local vendors,
-          and enjoy a simpler way to shop. Everything you need, all in one place.
-        </p>
-
-        <div class="hero-actions">
-          <a class="button button-primary" href="#products">Explore marketplace <span>→</span></a>
-          <a class="button button-secondary" href="#categories">Browse categories</a>
-        </div>
-
-        <div class="hero-trust">
-          <div class="trust-icon">✓</div>
-          <p><strong>Built for Nigeria</strong><br><span>Supporting local businesses, one order at a time.</span></p>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="hero-glow"></div>
-        <div class="hero-image-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1100&q=85"
-            alt="Fresh produce at a local market"
-          >
-          <div class="floating-card floating-top">
-            <span class="floating-icon">🥬</span>
-            <div><strong>Fresh finds</strong><small>Discover local products</small></div>
-          </div>
-          <div class="floating-card floating-bottom">
-            <span class="floating-icon">🇳🇬</span>
-            <div><strong>Made for our market</strong><small>Powered by local businesses</small></div>
-          </div>
-        </div>
-        <div class="hero-decoration"></div>
-      </div>
+    <section class="intro">
+      <div class="eyebrow">One platform, endless possibilities</div>
+      <h1>Welcome to MarketLink</h1>
+      <p>
+        Shop from local businesses, grow your business by selling,
+        or earn by delivering orders. Where would you like to begin?
+      </p>
     </section>
 
-    <section class="benefits">
-      <div class="container benefits-grid">
-        <article class="benefit">
-          <span class="benefit-icon">🛍️</span>
-          <div><h3>Easy shopping</h3><p>Discover products in one place.</p></div>
-        </article>
-        <article class="benefit">
-          <span class="benefit-icon">🏪</span>
-          <div><h3>Local vendors</h3><p>Help Nigerian businesses grow.</p></div>
-        </article>
-        <article class="benefit">
-          <span class="benefit-icon">📍</span>
-          <div><h3>Closer to you</h3><p>Location-based discovery is on our roadmap.</p></div>
-        </article>
-        <article class="benefit">
-          <span class="benefit-icon">🤝</span>
-          <div><h3>One community</h3><p>Customers and vendors connected.</p></div>
-        </article>
-      </div>
-    </section>
+    <h2 class="question">How would you like to use MarketLink?</h2>
 
-    <section class="section container" id="categories">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">FIND YOUR FAVOURITES</span>
-          <h2>Explore categories</h2>
-          <p>Whatever you need, your next great find starts here.</p>
-        </div>
-        <a href="#products" class="text-link">View products <span>→</span></a>
-      </div>
+    <section class="choices">
+      <a class="choice rider" href="auth.html?role=rider">
+        <div class="choice-icon">🚴</div>
+        <h2>Become a Rider</h2>
+        <p>Deliver orders, connect with businesses, and help customers receive their purchases.</p>
+        <span class="link-label">Join as a rider →</span>
+      </a>
 
-      <div class="category-grid">
-        <button class="category-card category-green" data-category="Groceries">
-          <span class="category-emoji">🥑</span><strong>Groceries</strong><small>Fresh everyday essentials</small>
-        </button>
-        <button class="category-card category-orange" data-category="Electronics">
-          <span class="category-emoji">📱</span><strong>Electronics</strong><small>Tech for everyday life</small>
-        </button>
-        <button class="category-card category-purple" data-category="Fashion">
-          <span class="category-emoji">👕</span><strong>Fashion</strong><small>Express your style</small>
-        </button>
-        <button class="category-card category-blue" data-category="Home">
-          <span class="category-emoji">🛋️</span><strong>Home & Living</strong><small>Make yourself at home</small>
-        </button>
-        <button class="category-card category-pink" data-category="Beauty">
-          <span class="category-emoji">✨</span><strong>Beauty</strong><small>Your everyday essentials</small>
-        </button>
-        <button class="category-card category-yellow" data-category="">
-          <span class="category-emoji">🎁</span><strong>Explore all</strong><small>Find something unexpected</small>
-        </button>
-      </div>
-    </section>
+      <a class="choice vendor" href="auth.html?role=vendor">
+        <div class="choice-icon">🏪</div>
+        <h2>Become a Vendor</h2>
+        <p>Showcase your products, reach new customers, and grow your business.</p>
+        <span class="link-label">Start selling →</span>
+      </a>
 
-    <section class="products-section" id="products">
-      <div class="container section">
-        <div class="section-heading product-heading">
-          <div>
-            <span class="eyebrow">THE MARKETPLACE</span>
-            <h2>Discover great finds</h2>
-            <p>Explore products selected for your everyday needs.</p>
-          </div>
-          <span class="product-count" id="product-count">Loading products…</span>
-        </div>
-
-        <div class="product-toolbar">
-          <label class="search-box">
-            <span aria-hidden="true">⌕</span>
-            <input id="product-search" type="search" placeholder="Search products, categories..." aria-label="Search products">
-            <kbd>Search</kbd>
-          </label>
-
-          <select id="category-filter" aria-label="Filter by category">
-            <option value="">All categories</option>
-          </select>
-
-          <select id="sort-filter" aria-label="Sort products">
-            <option value="featured">Featured</option>
-            <option value="price-low">Price: low to high</option>
-            <option value="price-high">Price: high to low</option>
-            <option value="name">Name: A to Z</option>
-          </select>
-        </div>
-
-        <div id="product-message" class="product-message" role="status" aria-live="polite">Preparing your marketplace…</div>
-        <div class="product-grid" id="product-grid"></div>
-      </div>
-    </section>
-
-    <section class="vendor-banner container">
-      <div class="vendor-banner-content">
-        <span class="eyebrow eyebrow-light">GROW WITH MARKETLINK</span>
-        <h2>Your business deserves<br>a bigger market.</h2>
-        <p>We're building a marketplace that helps local vendors reach more customers and grow their businesses.</p>
-        <a href="#about" class="button button-white">Discover our vision <span>→</span></a>
-      </div>
-      <div class="vendor-banner-art" aria-hidden="true">
-        <span>📦</span><span>🌱</span><span>🛍️</span>
-      </div>
-    </section>
-
-    <section class="section container about-section" id="about">
-      <span class="eyebrow">MORE THAN A MARKETPLACE</span>
-      <h2>Connecting today's market<br>to tomorrow's possibilities.</h2>
-      <p>MarketLink starts by connecting customers and vendors across Nigeria. Our roadmap includes delivery maps, business forecasting, and AI-powered voice insights to make commerce smarter and more accessible.</p>
-      <div class="roadmap-pills">
-        <span>Marketplace</span><span>Supabase & Maps</span><span>AI Forecasting</span><span>AI Voice Analytics</span>
-      </div>
+      <a class="choice buyer" href="marketplace.html">
+        <div class="choice-icon">🛍️</div>
+        <h2>Shop as a Buyer</h2>
+        <p>Explore products from local vendors and find what you need in one marketplace.</p>
+        <span class="link-label">Explore marketplace →</span>
+      </a>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a class="logo footer-logo" href="#"><span class="logo-icon">M</span><span>Market<span class="logo-light">Link</span></span></a>
-      <p>Your Market. Your People. One Link.</p>
-      <span>© <span id="current-year"></span> MarketLink</span>
-    </div>
-  </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <dialog class="cart-dialog" id="cart-dialog">
-    <div class="cart-dialog-header">
-      <div><span class="eyebrow">YOUR BAG</span><h2>Your shopping cart</h2></div>
-      <button class="close-button" id="close-cart" aria-label="Close cart">×</button>
-    </div>
-    <div class="cart-items" id="cart-items"></div>
-    <div class="cart-summary">
-      <div><span>Subtotal</span><strong id="cart-subtotal">₦0</strong></div>
-      <p>Delivery fees will be calculated when checkout is implemented.</p>
-      <button class="button button-primary checkout-button" id="checkout-button">Continue to checkout</button>
-    </div>
-  </dialog>
-
+  <footer>© MarketLink. Connecting buyers, vendors, and riders.</footer>
 </body>
 </html>

@@ -6,3 +6,9 @@
 *.db-shm
 *.db-wal
 .DS_Store
+
+backend/data/*.db-shm
+backend/data/*.db-wal
+
+backend/data/*.db-shm
+backend/data/*.db-wal

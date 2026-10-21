@@ -1,0 +1,162 @@
+
+:root {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #17221d;
+  background: #f5f7f5;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; }
+
+.topbar {
+  min-height: 72px;
+  padding: 16px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border-bottom: 1px solid #e3e9e4;
+}
+
+.brand {
+  color: #163d2b;
+  font-size: 24px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand span { color: #2e9c63; }
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 16px;
+  font-weight: 700;
+}
+
+.logout-btn {
+  background: #fbe9e7;
+  color: #a52e25;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 22px 60px;
+}
+
+.welcome { margin-bottom: 28px; }
+
+.eyebrow {
+  color: #258653;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: clamp(28px, 5vw, 40px);
+}
+
+.welcome > p:last-child,
+.panel-heading p {
+  color: #6a756e;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.stat-card, .panel {
+  background: #fff;
+  border: 1px solid #e3e9e4;
+  border-radius: 15px;
+  padding: 22px;
+}
+
+.stat-card span {
+  display: block;
+  color: #6a756e;
+  font-size: 14px;
+}
+
+.stat-card strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 28px;
+}
+
+.notice {
+  margin: 18px 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #e8f5ed;
+  color: #205c3a;
+  overflow-wrap: anywhere;
+}
+
+.notice.error {
+  background: #fff0ef;
+  color: #9c2e27;
+}
+
+.panel { margin-top: 20px; }
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.panel-heading h2 { margin: 0; }
+
+.panel-heading p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.secondary-btn {
+  color: #205c3a;
+  background: #e8f5ed;
+}
+
+.empty {
+  padding: 20px 0;
+  color: #6a756e;
+}
+
+.delivery-card {
+  padding: 16px 0;
+  border-top: 1px solid #e8ece9;
+}
+
+.delivery-card h3 { margin: 0 0 8px; }
+
+.delivery-card p {
+  color: #6a756e;
+  line-height: 1.5;
+}
+
+@media (max-width: 650px) {
+  .stats { grid-template-columns: 1fr; }
+  .topbar { padding: 16px 5%; }
+  .container { padding: 26px 16px 40px; }
+}

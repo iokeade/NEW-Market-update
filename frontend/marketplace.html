@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#176b45">
+  <title>MarketLink | Shop Local</title>
+  <link rel="stylesheet" href="marketplace.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">MarketLink<span>.</span></a>
+
+    <form id="search-form" class="search-form">
+      <span aria-hidden="true">⌕</span>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Search products, groceries, fashion..."
+        aria-label="Search products"
+      >
+      <button type="submit">Search</button>
+    </form>
+
+    <button id="cart-toggle" class="cart-button" type="button">
+      🛒 Cart <span id="cart-count">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">YOUR LOCAL MARKETPLACE</span>
+        <h1>Everything you need.<br><span>All in one place.</span></h1>
+        <p>Discover products from local vendors and shop conveniently with MarketLink.</p>
+        <a class="hero-button" href="#products">Explore products ↓</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-circle">🛍️</div>
+        <span class="floating-item item-one">🥑</span>
+        <span class="floating-item item-two">👟</span>
+        <span class="floating-item item-three">📦</span>
+      </div>
+    </section>
+
+    <section class="category-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">FIND YOUR FAVORITES</p>
+          <h2>Shop by category</h2>
+        </div>
+      </div>
+      <div id="categories" class="categories">
+        <button class="category active" data-category="all" type="button">🛍️ <span>All products</span></button>
+        <button class="category" data-category="food" type="button">🥑 <span>Food & groceries</span></button>
+        <button class="category" data-category="fashion" type="button">👕 <span>Fashion</span></button>
+        <button class="category" data-category="electronics" type="button">🎧 <span>Electronics</span></button>
+        <button class="category" data-category="home" type="button">🏠 <span>Home & living</span></button>
+      </div>
+    </section>
+
+    <section id="products" class="products-section">
+      <div class="section-heading products-heading">
+        <div>
+          <p class="eyebrow">HANDPICKED FOR YOU</p>
+          <h2>Explore products</h2>
+          <p id="results-count" class="muted">Loading products...</p>
+        </div>
+        <label class="sort-control">
+          Sort by
+          <select id="sort-select">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: low to high</option>
+            <option value="price-high">Price: high to low</option>
+            <option value="name">Name: A–Z</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="product-grid" class="product-grid">
+        <div class="loading-state">Loading MarketLink products...</div>
+      </div>
+    </section>
+  </main>
+
+  <aside id="cart-panel" class="cart-panel" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-heading">
+      <div>
+        <p class="eyebrow">YOUR SHOPPING</p>
+        <h2>Your cart</h2>
+      </div>
+      <button id="cart-close" class="icon-button" type="button" aria-label="Close cart">✕</button>
+    </div>
+
+    <div id="cart-items" class="cart-items">
+      <p class="muted">Your cart is empty.</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cart-total">₦0</strong>
+      </div>
+      <button id="checkout-button" class="checkout-button" type="button">
+        Proceed to checkout
+      </button>
+      <p class="muted small">Delivery fees, if applicable, may be added at checkout.</p>
+    </div>
+  </aside>
+
+  <div id="cart-backdrop" class="cart-backdrop"></div>
+
+  <footer>
+    <a class="logo" href="index.html">MarketLink<span>.</span></a>
+    <p>Connecting buyers, vendors, and riders.</p>
+    <p>© MarketLink</p>
+  </footer>
+
+  <script src="marketplace.js"></script>
+</body>
+</html>

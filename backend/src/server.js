@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
 const authRoutes = require('./routes/auth');
+const riderRoutes = require('./routes/riders');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -39,6 +40,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/riders', riderRoutes);
 console.log(
   'AUTH ROUTER MOUNTED:',
   authRoutes.stack
@@ -49,7 +51,7 @@ console.log(
     }))
 );
 app.use('/api/orders', orderRoutes);
-
+app.use('/api/riders', riderRoutes);
 app.use((req, res) => {
   res.status(404).json({
     success: false,
