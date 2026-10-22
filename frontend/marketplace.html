@@ -1,18 +1,19 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NG">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#176b45">
+  <meta name="description" content="Discover products from trusted local vendors on MarketLink.">
   <title>MarketLink | Shop Local</title>
   <link rel="stylesheet" href="marketplace.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="logo" href="index.html">MarketLink<span>.</span></a>
+    <a class="logo" href="index.html" aria-label="MarketLink home">MarketLink<span>.</span></a>
 
-    <form id="search-form" class="search-form">
+    <form id="search-form" class="search-form" role="search">
       <span aria-hidden="true">⌕</span>
       <input
         id="search-input"
@@ -23,8 +24,15 @@
       <button type="submit">Search</button>
     </form>
 
-    <button id="cart-toggle" class="cart-button" type="button">
-      🛒 Cart <span id="cart-count">0</span>
+    <button
+      id="cart-toggle"
+      class="cart-button"
+      type="button"
+      aria-controls="cart-panel"
+      aria-expanded="false"
+    >
+      <span aria-hidden="true">🛒</span> Cart
+      <span id="cart-count" class="cart-count">0</span>
     </button>
   </header>
 
@@ -44,29 +52,31 @@
       </div>
     </section>
 
-    <section class="category-section">
+    <section class="category-section" aria-labelledby="category-title">
       <div class="section-heading">
         <div>
           <p class="eyebrow">FIND YOUR FAVORITES</p>
-          <h2>Shop by category</h2>
+          <h2 id="category-title">Shop by category</h2>
         </div>
       </div>
+
       <div id="categories" class="categories">
-        <button class="category active" data-category="all" type="button">🛍️ <span>All products</span></button>
-        <button class="category" data-category="food" type="button">🥑 <span>Food & groceries</span></button>
-        <button class="category" data-category="fashion" type="button">👕 <span>Fashion</span></button>
-        <button class="category" data-category="electronics" type="button">🎧 <span>Electronics</span></button>
-        <button class="category" data-category="home" type="button">🏠 <span>Home & living</span></button>
+        <button class="category active" data-category="all" type="button" aria-pressed="true">🛍️ <span>All products</span></button>
+        <button class="category" data-category="food" type="button" aria-pressed="false">🥑 <span>Food & groceries</span></button>
+        <button class="category" data-category="fashion" type="button" aria-pressed="false">👕 <span>Fashion</span></button>
+        <button class="category" data-category="electronics" type="button" aria-pressed="false">🎧 <span>Electronics</span></button>
+        <button class="category" data-category="home" type="button" aria-pressed="false">🏠 <span>Home & living</span></button>
       </div>
     </section>
 
-    <section id="products" class="products-section">
+    <section id="products" class="products-section" aria-labelledby="products-title">
       <div class="section-heading products-heading">
         <div>
           <p class="eyebrow">HANDPICKED FOR YOU</p>
-          <h2>Explore products</h2>
-          <p id="results-count" class="muted">Loading products...</p>
+          <h2 id="products-title">Explore products</h2>
+          <p id="results-count" class="muted" aria-live="polite">Loading products...</p>
         </div>
+
         <label class="sort-control">
           Sort by
           <select id="sort-select">
@@ -78,38 +88,129 @@
         </label>
       </div>
 
-      <div id="product-grid" class="product-grid">
+      <div id="product-grid" class="product-grid" aria-live="polite">
         <div class="loading-state">Loading MarketLink products...</div>
       </div>
     </section>
   </main>
 
-  <aside id="cart-panel" class="cart-panel" aria-label="Shopping cart" aria-hidden="true">
+  <div id="cart-backdrop" class="cart-backdrop"></div>
+
+  <aside
+    id="cart-panel"
+    class="cart-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cart-title"
+    aria-hidden="true"
+    inert
+  >
     <div class="cart-heading">
       <div>
         <p class="eyebrow">YOUR SHOPPING</p>
-        <h2>Your cart</h2>
+        <h2 id="cart-title">Your cart <span id="cart-heading-count">(0)</span></h2>
+        <p class="muted small">Review your items before checkout.</p>
       </div>
-      <button id="cart-close" class="icon-button" type="button" aria-label="Close cart">✕</button>
+      <button id="cart-close" class="icon-button" type="button" aria-label="Close shopping cart">✕</button>
     </div>
 
-    <div id="cart-items" class="cart-items">
-      <p class="muted">Your cart is empty.</p>
+    <div class="cart-toolbar">
+      <span id="cart-item-label" class="muted small">0 items</span>
+      <button id="clear-cart-button" class="text-button" type="button" disabled>Clear cart</button>
+    </div>
+
+    <div id="cart-items" class="cart-items" aria-live="polite">
+      <div class="cart-empty">
+        <div class="empty-cart-icon" aria-hidden="true">🛍️</div>
+        <h3>Your cart is waiting</h3>
+        <p class="muted">Discover something you love and add it here.</p>
+        <button id="continue-shopping" class="secondary-button" type="button">Continue shopping</button>
+      </div>
     </div>
 
     <div class="cart-footer">
-      <div class="cart-total">
-        <span>Total</span>
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <strong id="cart-subtotal">₦0</strong>
+      </div>
+      <div class="summary-line muted">
+        <span>Delivery</span>
+        <span>Calculated at checkout</span>
+      </div>
+      <div class="summary-line total-line">
+        <span>Estimated total</span>
         <strong id="cart-total">₦0</strong>
       </div>
-      <button id="checkout-button" class="checkout-button" type="button">
-        Proceed to checkout
+      <button id="checkout-button" class="checkout-button" type="button" disabled>
+        Continue to checkout <span aria-hidden="true">→</span>
       </button>
-      <p class="muted small">Delivery fees, if applicable, may be added at checkout.</p>
+      <p class="muted small footer-note">Delivery fees and final order total will be confirmed before an order is placed.</p>
     </div>
   </aside>
 
-  <div id="cart-backdrop" class="cart-backdrop"></div>
+  <div id="checkout-backdrop" class="checkout-backdrop"></div>
+
+  <section
+    id="checkout-panel"
+    class="checkout-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="checkout-title"
+    aria-hidden="true"
+    inert
+  >
+    <div class="checkout-heading">
+      <div>
+        <p class="eyebrow">ALMOST THERE</p>
+        <h2 id="checkout-title">Delivery details</h2>
+        <p class="muted">Tell us where your order should go.</p>
+      </div>
+      <button id="checkout-close" class="icon-button" type="button" aria-label="Close checkout">✕</button>
+    </div>
+
+    <div class="checkout-summary">
+      <span>Your current cart</span>
+      <strong id="checkout-summary-total">₦0</strong>
+      <p id="checkout-summary-count" class="muted small">0 items</p>
+    </div>
+
+    <form id="checkout-form" class="checkout-form">
+      <label for="customer-name">Full name</label>
+      <input id="customer-name" name="customerName" autocomplete="name" required maxlength="100" placeholder="Enter your full name">
+
+      <label for="customer-phone">Phone number</label>
+      <input id="customer-phone" name="phone" type="tel" autocomplete="tel" required maxlength="25" placeholder="e.g. 08012345678">
+
+      <label for="delivery-address">Delivery address</label>
+      <textarea id="delivery-address" name="address" autocomplete="street-address" required maxlength="500" rows="3" placeholder="House number, street, area"></textarea>
+
+      <label for="delivery-city">City / town</label>
+      <input id="delivery-city" name="city" autocomplete="address-level2" required maxlength="100" placeholder="e.g. Ikeja">
+
+      <label for="delivery-state">State</label>
+      <select id="delivery-state" name="state" required>
+        <option value="">Select a state</option>
+        <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option>
+        <option>Anambra</option><option>Bauchi</option><option>Bayelsa</option>
+        <option>Benue</option><option>Borno</option><option>Cross River</option>
+        <option>Delta</option><option>Ebonyi</option><option>Edo</option>
+        <option>Ekiti</option><option>Enugu</option><option>FCT Abuja</option>
+        <option>Gombe</option><option>Imo</option><option>Jigawa</option>
+        <option>Kaduna</option><option>Kano</option><option>Katsina</option>
+        <option>Kebbi</option><option>Kogi</option><option>Kwara</option>
+        <option>Lagos</option><option>Nasarawa</option><option>Niger</option>
+        <option>Ogun</option><option>Ondo</option><option>Osun</option>
+        <option>Oyo</option><option>Plateau</option><option>Rivers</option>
+        <option>Sokoto</option><option>Taraba</option><option>Yobe</option>
+        <option>Zamfara</option>
+      </select>
+
+      <div id="checkout-notice" class="checkout-notice" role="status" aria-live="polite" hidden></div>
+
+      <button class="checkout-button" type="submit">Review order details</button>
+      <p class="muted small">This demo form does not submit an order or process payment. Backend checkout will be connected and tested separately.</p>
+    </form>
+  </section>
 
   <footer>
     <a class="logo" href="index.html">MarketLink<span>.</span></a>
@@ -117,6 +218,8 @@
     <p>© MarketLink</p>
   </footer>
 
-  <script src="marketplace.js"></script>
+  <div id="marketplace-toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="marketplace.js" defer></script>
 </body>
 </html>

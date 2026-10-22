@@ -4,7 +4,7 @@
    Connected to the SQLite-backed Express API
    ========================================= */
 
-const API_BASE_URL = "http://localhost:4001/api";
+const API_BASE_URL = "http://localhost:4000/api";
 
 const sampleProducts = [
   { id: "demo-1", name: "Premium Local Rice", category: "Groceries", price: 42000, unit: "50kg bag", location: "Lagos", description: "Quality local rice for your household.", emoji: "🌾" },
@@ -468,3 +468,4 @@ populateCategories();
 renderProducts(products);
 updateCart();
 loadProducts();
+

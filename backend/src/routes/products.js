@@ -1,6 +1,9 @@
 
+
 const express = require('express');
 const db = require('../db/database');
+const { authenticateToken } = require('./auth');
+
 
 const router = express.Router();
 
@@ -88,8 +91,8 @@ router.get('/:id', (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
-  try {
+router.post('/', authenticateToken, (req, res) => {
+    try {
     const {
       name,
       category,
@@ -132,20 +135,23 @@ router.post('/', (req, res) => {
       });
     }
 
-    const result = db.prepare(`
-      INSERT INTO products
-        (name, category, price, unit, location, description, image_url, stock)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `).run(
-      name.trim(),
-      category.trim(),
-      Number(price),
-      String(unit),
-      String(location),
-      String(description),
-      String(image_url),
-      Number(stock)
-    );
+    c
+const result = db.prepare(`
+  INSERT INTO products
+    (name, category, price, unit, location, description, image_url, stock, vendor_id)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+`).run(
+  name.trim(),
+  category.trim(),
+  Number(price),
+  String(unit),
+  String(location),
+  String(description),
+  String(image_url),
+  Number(stock),
+  req.vendor.id
+);
+
 
     const product = getProductById.get(result.lastInsertRowid);
 

@@ -1,5 +1,5 @@
 
-const API_BASE_URL = 'http://localhost:4001/api';
+const API_BASE_URL = 'http://localhost:4000/api';
 
 const form = document.getElementById('auth-form');
 const loginTab = document.getElementById('login-tab');
@@ -91,3 +91,4 @@ form.addEventListener('submit', async (event) => {
     submitButton.textContent = mode === 'register' ? 'Create Account' : 'Sign In';
   }
 });
+
